@@ -13,26 +13,23 @@ class Hamming
   end
 
   # Returns the hamming distance between two strings +string1+, +string2+
-  # Returns +InvalidStringError+ if at least one of the following con
-  # ditions are fulfilled:
-  # - strings are of unequal length
-  # - They use an alphabet other than {A, C, G, T}
+  # Returns +InvalidStringError+ when arguments are of unequal length
+  # or don't use the correct alphabet for base pairs
   def self.compute(string1, string2)
-    distance = 0
-    string1, string2 = string1.upcase, string2.upcase
     fail InvalidStringError if bad_sequence?(string1) || bad_sequence?(string2)
     fail InvalidStringError if string1.length != string2.length
 
+    string1, string2 = string1.upcase, string2.upcase
+
+    distance = 0
     ary1, ary2 = string1.chars, string2.chars
     ary1.zip(ary2) { |byte1, byte2| distance += 1 unless byte1 == byte2 }
-
     return distance
   end
 
   private
 
-  # Checks if the base pair string contains any
-  #  alphabets other than {A, C, G, T}
+  # :nodoc:
   def self.bad_sequence?(str)
     return !!str.match(/[^ACGT]/i)
   end
