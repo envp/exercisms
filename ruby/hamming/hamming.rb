@@ -23,8 +23,8 @@ class Hamming
     fail InvalidStringError if bad_sequence?(string1) || bad_sequence?(string2)
     fail InvalidStringError if string1.length != string2.length
 
-    ary1 = string1.split(//)
-    ary2 = string2.split(//)
+    ary1 = string1.chars
+    ary2 = string2.chars
     ary1.zip(ary2) { |byte1, byte2| distance += 1 unless byte1 == byte2 }
 
     return distance
