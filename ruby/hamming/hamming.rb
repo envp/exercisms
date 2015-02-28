@@ -8,7 +8,7 @@ class Hamming
   # as arguments in +Hamming.compute(string1, string2)+
   class InvalidStringError < StandardError
     def message
-      'Base pair string is not limited to [ACGT]'
+      'Base pair string is limited to the alphabet [ACGT]'
     end
   end
 
