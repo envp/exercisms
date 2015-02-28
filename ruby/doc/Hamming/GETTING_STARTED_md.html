@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>GETTING_STARTED - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body class="file">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+<div id="table-of-contents">
+  <nav class="section">
+    <h3 class="section-header">Table of Contents</h3>
+    <ul>
+      <li><a href="#label-Getting+Started">Getting Started</a>
+      <li><a href="#label-Step+1">Step 1</a>
+      <li><a href="#label-Step+2">Step 2</a>
+      <li><a href="#label-Step+3">Step 3</a>
+      <li><a href="#label-Step+4">Step 4</a>
+      <li><a href="#label-Step+5">Step 5</a>
+      <li><a href="#label-Step+6">Step 6</a>
+      <li><a href="#label-Wash%2C+Rinse%2C+Repeat">Wash, Rinse, Repeat</a>
+      <li><a href="#label-Submit">Submit</a>
+    </ul>
+  </nav>
+</div>
+
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="../hamming/GETTING_STARTED_md.html">GETTING_STARTED</a>
+  
+    <li class="file"><a href="../hamming/README_md.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Hamming.html">Hamming</a>
+  
+    <li><a href="../Hamming/InvalidStringError.html">Hamming::InvalidStringError</a>
+  
+    <li><a href="../HammingTest.html">HammingTest</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<h1 id="label-Getting+Started">Getting Started<span><a href="#label-Getting+Started">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>These exercises lean on Test-Driven Development (TDD), but they&#39;re not
+an
+exact match.</p>
+
+<p>The following steps assume that you are in the same directory as the
+test
+suite.</p>
+
+<h2 id="label-Step+1">Step 1<span><a href="#label-Step+1">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Run the test suite. It&#39;s in Minitest, and can be run with ruby:</p>
+
+<pre>$ ruby hamming_test.rb</pre>
+
+<p>This will fail, complaining that there is no file called
+<code>hamming</code>.</p>
+
+<p>To fix the error create an empty file called <code>hamming.rb</code> in the
+same
+directory as the <code>hamming_test.rb</code> file.</p>
+
+<h2 id="label-Step+2">Step 2<span><a href="#label-Step+2">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Run the test again. It will give you a new error.</p>
+
+<pre>1) Error:
+HammingTest#test_no_difference_between_identical_strands:
+NameError: uninitialized constant Hamming
+    hamming_test.rb:12:in `test_no_difference_between_identical_strands&#39;</pre>
+
+<p>Within the first test, we are referencing a constant named
+<code>Hamming</code> when
+we say <code>Hamming.compute(&#39;A&#39;,
+&#39;A&#39;)</code>. When Ruby sees a capitalized name
+like
+<code>Hamming</code>, it looks it up in a big huge list of all the
+constants it knows about,
+to see what it points to. It could point to
+anything, and often in Ruby we have
+constants that point to definitions of
+classes or modules.</p>
+
+<p>When it looks <code>Hamming</code> up in it&#39;s list, it doesn&#39;t find
+anything, so we need to make
+one.</p>
+
+<p>There are several ways that this error message can be made to go
+away, one
+of which is to define a <code>Hamming</code> class.</p>
+
+<p>Open up the hamming.rb file and add the following code:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Hamming</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Step+3">Step 3<span><a href="#label-Step+3">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Run the test again.</p>
+
+<pre>1) Error:
+HammingTest#test_no_difference_between_identical_strands:
+NoMethodError: undefined method `compute&#39; for #&lt;Hamming:0x007fa531343e50&gt;
+    hamming_test.rb:12:in `test_no_difference_between_identical_strands&#39;</pre>
+
+<p>This time we have a <code>Hamming</code>, but we&#39;re trying tell it to
+<code>compute</code>, and
+<code>Hamming</code> doesn&#39;t understand that
+message.</p>
+
+<p>Open up hamming.rb and add a method definition inside the class:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Hamming</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">compute</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Step+4">Step 4<span><a href="#label-Step+4">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Run the test again.</p>
+
+<pre>1) Error:
+HammingTest#test_no_difference_between_identical_strands:
+ArgumentError: wrong number of arguments (2 for 0)
+  in `compute&#39; hamming_test.rb:12:in `test_no_difference_between_identical_strands&#39;</pre>
+
+<p>The method <code>compute</code> needs to take two arguments.</p>
+
+<p>These are examples of method definitions that take arguments:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">greet</span>(<span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">drink</span>(<span class="ruby-identifier">beverage</span>,<span class="ruby-identifier">size</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Change the <code>compute</code> method definition so it takes two
+arguments.</p>
+
+<h2 id="label-Step+5">Step 5<span><a href="#label-Step+5">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Run the test again.</p>
+
+<pre>1) Failure:
+HammingTest#test_no_difference_between_identical_strands [hamming_test.rb:12]:
+Expected: 0
+  Actual: nil</pre>
+
+<p>Up until now we&#39;ve been getting errors, this time we get a failure.</p>
+
+<p>An error means that Ruby cannot even run properly because of things like
+missing
+files or syntax errors, or referring to things that don&#39;t
+exist.</p>
+
+<p>A failure is different—when you have a failure the Ruby is running just
+fine,
+but the test is expecting one outcome, but getting another.</p>
+
+<p>The test is expecting the <code>compute</code> method to return the number
+0. The easiest way
+to make it pass, is to simply stick the number 0 inside
+the method definition.</p>
+
+<h2 id="label-Step+6">Step 6<span><a href="#label-Step+6">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Run the test again.</p>
+
+<p>If it fails you&#39;re going to need to read the error message carefully to
+figure
+out what went wrong, and then try again.</p>
+
+<p>If it passes, then you&#39;re ready to move to the next step.</p>
+
+<p>Open the hamming_test.rb file, and find the word “skip”. All but the first
+test
+start with &quot;skip&quot;, which tells Minitest to ignore the test.
+This is so that
+you don&#39;t have to deal with all the failures at once.</p>
+
+<p>To activate the next test, delete the “skip”, and run the test suite again.</p>
+
+<h2 id="label-Wash%2C+Rinse%2C+Repeat">Wash, Rinse, Repeat<span><a href="#label-Wash%2C+Rinse%2C+Repeat">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Delete one “skip” at a time, and make each test pass before you move to
+the
+next one.</p>
+
+<h2 id="label-Submit">Submit<span><a href="#label-Submit">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>When everything is passing, you can submit your code with the
+following
+command:</p>
+
+<pre>$ exercism submit hamming.rb</pre>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
